@@ -1,0 +1,10 @@
+<project name="Salesforce Ant tasks" default="deploy" basedir="." xmlns:sf="antlib:com.salesforce">
+    <property file="build.properties"/>
+    <property environment="env"/>
+    <target name="deploy">
+      <!-- Upload the contents of the "mypkg" package -->
+      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="src"
+                 maxPoll="50" pollWaitMillis="10000"
+      />
+    </target>
+</project>
