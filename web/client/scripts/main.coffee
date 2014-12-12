@@ -4,6 +4,7 @@ module.exports = angular.module "app", [
   "ngRoute"
   require("./controller").name
   require("./service").name
+  require("./directive").name
 ]
 
 .config [
@@ -12,8 +13,10 @@ module.exports = angular.module "app", [
     $routeProvider
       .when "/", 
         controller: 'BaseControl'
-        templateUrl: '/root.html'
-      .otherwise  redirectTo '/'
+        templateUrl: 'templates/root.html'
+      .otherwise 
+        redirectTo: '/'
 ]
 
-.controller "MainControl", ($scope, $document) ->
+.controller "MainControl", ($scope) ->
+  $scope.title = "LotteryVote"

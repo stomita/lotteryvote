@@ -8,7 +8,9 @@
   "dependencies": {
     "coffee-script": "^1.7.1",
     "ejs": "^1.0.0",
-    "express": "^3.16.6"
+    "express": "^3.16.6",
+    "jquery": "^2.1.1",
+    "lodash": "^2.4.1"
   },
   "devDependencies": {
     "browserify": "^4.1.11",
