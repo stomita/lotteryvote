@@ -1,6 +1,31 @@
-<apex:page >
-  <!-- Begin Default Content REMOVE THIS -->
-  <h1>Congratulations</h1>
-  This is your new Page
-  <!-- End Default Content REMOVE THIS -->
+<apex:page docType="html-5.0"
+           showHeader="false"
+           sidebar="false"
+           applyBodyTag="false"
+           applyHtmlTag="false"
+           standardStylesheets="false"
+           cache="true"
+>
+<html lang="ja" ng-app="app" ng-controller="MainControl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<meta name="format-detection" content="telephone=no" />
+<title>{{ title }}</title>
+<link rel="stylesheet" href="{!URLFOR($Resource.LotteryVote, 'assets/vendor/bootstrap/dist/css/bootstrap.css')}" />
+<link rel="stylesheet" href="{!URLFOR($Resource.LotteryVote, 'assets/vendor/nvd3/nv.d3.css')}" />
+<link rel="stylesheet" href="{!URLFOR($Resource.LotteryVote, 'styles/main.css')}" />
+<script src="{!URLFOR($Resource.LotteryVote, 'assets/vendor/angular/angular.js')}"></script>
+<script src="{!URLFOR($Resource.LotteryVote, 'assets/vendor/angular-route/angular-route.js')}"></script>
+<script src="{!URLFOR($Resource.LotteryVote, 'assets/vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js')}"></script>
+<script src="{!URLFOR($Resource.LotteryVote, 'assets/vendor/d3/d3.js')}"></script>
+<script src="{!URLFOR($Resource.LotteryVote, 'assets/vendor/nvd3/nv.d3.js')}"></script>
+<script src="{!URLFOR($Resource.LotteryVote, 'assets/vendor/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js')}"></script>
+<script src="{!URLFOR($Resource.LotteryVote, 'scripts/main-bundle.js')}"></script>
+<script src="{!URLFOR($Resource.LotteryVote, 'scripts/angular-templates.js')}"></script>
+</head>
+<body>
+<main id="main" ng-view="ng-view"></main>
+</body>
+</html>
 </apex:page>
