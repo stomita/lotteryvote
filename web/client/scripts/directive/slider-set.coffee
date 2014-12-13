@@ -6,7 +6,9 @@ module.exports = ->
   restrict: 'E'
   templateUrl: 'templates/common/slider-set.html'
   scope:
-    elements: '='
+    elements: '=source'
+    targetType: '@target'
+    onComplete: '&complete'
   controller: [ "$scope", ($scope) ->
     $scope.changeWeight = (elem, weight) ->
       others = (el for el in $scope.elements when el.id != elem.id)
@@ -21,9 +23,14 @@ module.exports = ->
           el.weight -= dw
           reduced += dw
         if diff > reduced
-          index = Math.floor(Math.random() * others.length)
-          others[index]?.weight -= diff - reduced
+          dw = diff - reduced
+          delements = el for el in others when el.weight >= dw
+          index = Math.floor(Math.random() * delements.length)
+          delements[index]?.weight -= dw
       elem.weight = weight
       $scope.$apply()
+    $scope.handleComplete = ->
+      console.log $scope
+      $scope.onComplete?()
   ]
   link: ($scope, $element, $attrs) ->

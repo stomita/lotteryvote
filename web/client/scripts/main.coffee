@@ -2,6 +2,7 @@
 
 module.exports = angular.module "app", [
   "ngRoute"
+  "ui.bootstrap"
   require("./controller").name
   require("./service").name
   require("./directive").name
@@ -12,8 +13,8 @@ module.exports = angular.module "app", [
   ($routeProvider) ->
     $routeProvider
       .when "/", 
-        controller: 'BaseControl'
-        templateUrl: 'templates/root.html'
+        controller: 'HomeControl'
+        templateUrl: 'templates/home.html'
       .otherwise 
         redirectTo: '/'
 ]

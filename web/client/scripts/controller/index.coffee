@@ -2,4 +2,5 @@
 
 module.exports = angular.module "app.controller", []
 
-.controller "BaseControl", require "./base"
+.controller "HomeControl", require "./home"
+.controller "ProxyPickerControl", require "./proxy-picker"

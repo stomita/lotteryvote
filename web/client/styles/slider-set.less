@@ -1,0 +1,40 @@
+.slider {
+  border: 1px solid #aaaaaa;
+  border-radius: 5px;
+  .bar {
+    height: 45px;
+  }
+}
+
+photo-icon {
+  display: block;
+  .photo {
+    display: inline-block;
+    background-color: lightgray;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+  }
+}
+
+slider-set {
+  margin: 0;
+  padding: 0;
+  display: block;
+  .slider-row {
+    photo-icon {
+      float: left;
+    }
+    slider {
+      display: block;
+      margin-left: 55px;
+    }
+    &:after {
+      content: ".";
+      display: block;   
+      height: 0;   
+      clear: both;   
+      visibility: hidden; 
+    }
+  }
+}

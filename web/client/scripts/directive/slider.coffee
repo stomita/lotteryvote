@@ -5,10 +5,18 @@ $ = require "jquery"
 
 module.exports = ($document) ->
   restrict: 'E'
-  template: '<div class="slider"><div class="bar"></span></div>'
+  template: """
+    <div class="slider">
+      <div class="bar">
+        <span class="weight">{{ value }} %</span>
+      </div>
+    </div>
+  """
   scope:
     value: '='
+    color: '='
     onChange: '&change'
+    onComplete: '&complete'
   link: ($scope, $element, $attrs) ->
     $element = $($element)
     $slider = $element.find('div.slider')
@@ -31,9 +39,12 @@ module.exports = ($document) ->
       offset = $bar.offset().left
       adjustBar(e)
     $document.on "mouseup touchend", (e) ->
+      $scope.onComplete?() if mouseDown
       mouseDown = false
     $element.on "mousemove touchmove", (e) ->
       return unless mouseDown
       adjustBar(e)
     $scope.$watch "value", (value) ->
       $bar.width "#{value}%"
+    $scope.$watch "color", (color) ->
+      $bar.css "background-color", color

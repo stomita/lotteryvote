@@ -1,0 +1,17 @@
+<div class="container">
+  <pie-chart id="vote-rate-chart"
+             data="voteRates"
+             height="200"></pie-chart>
+  <slider-set class="candidate-set"
+              source="elements"
+              target="candidate"
+              complete="calcVoteRates()"
+  ></slider-set>
+  <h3>委任投票</h3>
+  <slider-set class="proxy-set"
+              source="elements"
+              target="proxy"
+              complete="calcVoteRates()"
+  ></slider-set>
+  <button class="btn btn-primary btn-block" ng-click="addProxy()">委任するひとを増やす</button>
+</div>
