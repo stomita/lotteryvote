@@ -1,0 +1,45 @@
+.election-title {
+  margin: 5px auto 0;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.election-detail {
+  position: relative;
+  .election-actions {
+    position: absolute;
+    z-index: 1;
+    top: 60px;
+    width: 100%;
+    text-align: center;
+    button {
+      border-radius: 50px;
+      border: 0px none;
+      width: 80px;
+      height: 80px;
+      -webkit-animation: blink 3s infinite;
+      -moz-animation:    blink 3s infinite;
+      animation:         blink 3s infinite;
+    }
+  }
+}
+
+@-webkit-keyframes blink {
+  0%   { opacity: 0.1; }
+  10% { opacity: 0.6; }
+  50% { opacity: 0.6; }
+  100% { opacity: 0.1; }
+}
+@-moz-keyframes blink {
+  0%   { opacity: 0.1; }
+  10% { opacity: 0.6; }
+  50% { opacity: 0.6; }
+  100% { opacity: 0.1; }
+}
+@keyframes blink {
+  0%   { opacity: 0.1; }
+  10% { opacity: 0.6; }
+  50% { opacity: 0.6; }
+  100% { opacity: 0.1; }
+}

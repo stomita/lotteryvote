@@ -1,0 +1,18 @@
+<div class="lottery-dialog">
+  <div class="modal-header">
+    <h3 class="modal-title">あなたが投票すべき候補は...</h3>
+  </div>
+  <div class="modal-body">
+    <div class="loading" ng-show="!candidate">
+      <i class="fa fa-cog fa-spin fa-5x"></i>
+    </div>
+    <div class="candidate" ng-show="candidate">
+      <photo-icon photo="candidate.iconUrl"></photo-icon>
+      <h3>{{ candidate.name }}</h3> です。
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="$close()">OK</button>
+  </div>
+</div>
+    

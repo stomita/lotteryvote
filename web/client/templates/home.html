@@ -1,7 +1,15 @@
 <div class="container">
-  <pie-chart id="vote-rate-chart"
-             data="voteRates"
-             height="200"></pie-chart>
+  <h3 class="election-title">{{ election.name }}</h3>
+  <div class="election-detail">
+    <pie-chart class="election-vote-rate"
+               data="voteRates"
+               height="200"></pie-chart>
+    <div class="election-actions" ng-show="hasValidVotes()">
+      <button class="btn btn-primary" ng-click="startLottery()">
+        <i class="fa fa-bolt fa-2x"></i>
+      </button>
+    </div>
+  </div>
   <slider-set class="candidate-set"
               source="votes"
               target="candidate"

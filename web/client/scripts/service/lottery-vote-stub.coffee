@@ -4,6 +4,12 @@ _ = require "lodash"
 Promise = require "promise"
 
 module.exports = () ->
+
+  getElection: (electionId) ->
+    Promise.resolve(
+      require("./data/elections")[0]
+    )
+
   getElections: ->
     Promise.resolve(
       require "./data/elections"

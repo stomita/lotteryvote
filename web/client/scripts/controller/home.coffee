@@ -10,6 +10,10 @@ module.exports = ($scope, $timeout, $modal, LotteryVote) ->
   $scope.votes = []
   $scope.voteRates = []
 
+  LotteryVote.getElection().then (election) ->
+    $scope.election = election
+    $scope.$apply()
+
   LotteryVote.getMyVotes().then (votes) ->
     $scope.votes =
       for vote, i in votes
@@ -30,10 +34,21 @@ module.exports = ($scope, $timeout, $modal, LotteryVote) ->
   $scope.hasProxies = ->
     _.find $scope.votes, (el) -> el.type == 'proxy'
 
+  $scope.hasValidVotes = ->
+    _.find $scope.votes, (el) -> el.weight > 0
+
   $scope.addProxy = ->
     modal = $modal.open
       templateUrl: 'templates/proxy-picker.html'
       controller: 'ProxyPickerControl'
+
+  $scope.startLottery = ->
+    modal = $modal.open
+      templateUrl: 'templates/lottery.html'
+      controller: 'LotteryControl'
+      resolve:
+        election: -> $scope.election
+        votes: -> $scope.votes
 
   $scope.calcVoteRates = ->
     $scope.voteRates = []

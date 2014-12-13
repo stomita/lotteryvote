@@ -35,5 +35,5 @@ module.exports = ($timeout) ->
   ]
   link: ($scope, $element, $attrs) ->
     $element = $($element)
-    $scope.nWidth = $scope.width || $element.parent().width()
+    $scope.nWidth = if $scope.width? then +$scope.width else $element.parent().width()
     $scope.nHeight = +$scope.height
