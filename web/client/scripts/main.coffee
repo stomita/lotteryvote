@@ -20,3 +20,4 @@ module.exports = angular.module "app", [
 
 .controller "MainControl", ($scope) ->
   $scope.title = "LotteryVote"
+  $scope.handleSliderChange = (v) -> console.log v
