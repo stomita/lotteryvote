@@ -46,6 +46,10 @@
         <name>Profile</name>
     </types>
     <types>
+        <members>LotteryVote</members>
+        <name>StaticResource</name>
+    </types>
+    <types>
         <members>DividedVote__c.CandidateInElectionCheck</members>
         <members>DividedVote__c.ProxyOrCandidateCheck</members>
         <members>DividedVote__c.WeightRangeCheck</members>
