@@ -1,44 +1,45 @@
 "use strict"
 
+_ = require "lodash"
 theme = require "../common/theme"
 
-_ = require "lodash"
-
-module.exports = ($scope, $timeout, $modal) ->
+module.exports = ($scope, $timeout, $modal, LotteryVote) ->
 
   colors = theme["default"].colors
 
+  $scope.votes = []
   $scope.voteRates = []
 
-  $scope.elements = [
-    { id: 1, name: 'AAA', weight: 10, type: 'candidate', color: colors[0], iconUrl: "/images/aaa.png" }
-    { id: 2, name: 'BBB', weight: 40, type: 'candidate', color: colors[1], iconUrl: "/images/bbb.png" }
-    { id: 3, name: 'CCC', weight: 30, type: 'candidate', color: colors[2], iconUrl: "/images/ccc.png" }
-    { id: 4, name: 'aaa', weight: 0, type: 'proxy', color: '#bbbbbb', iconUrl: "/images/aaa.png" }
-    { id: 5, name: 'bbb', weight: 0, type: 'proxy', color: '#bbbbbb', iconUrl: "/images/bbb.png" }
-  ]
+  LotteryVote.getMyVotes().then (votes) ->
+    $scope.votes =
+      for vote, i in votes
+        who = vote.candidate || vote.proxy
+        {
+          id: vote.id
+          name: who.name
+          weight: vote.weight
+          type: if vote.candidate then 'candidate' else 'proxy'
+          color: if vote.candidate then colors[i % colors.length] else "#bbbbbb"
+          iconUrl: who.iconUrl
+        }
+    $scope.$apply()
+    $scope.calcVoteRates()
+  .catch (err) ->
+    console.error err
 
   $scope.hasProxies = ->
-    _.find $scope.elements, (el) -> el.type == 'proxy'
+    _.find $scope.votes, (el) -> el.type == 'proxy'
 
   $scope.addProxy = ->
     modal = $modal.open
       templateUrl: 'templates/proxy-picker.html'
       controller: 'ProxyPickerControl'
-    ###
-    $scope.elements.push
-      id: $scope.elements.length
-      name: 'Added Proxy'
-      weight: 0
-      type: 'proxy'
-    $scope.$apply()
-    ###
 
   $scope.calcVoteRates = ->
     $scope.voteRates = []
     totalWeights = 0
     proxyWeights = 0
-    for elem in $scope.elements
+    for elem in $scope.votes
       totalWeights += elem.weight
       if elem.type == 'candidate'
         $scope.voteRates.push
@@ -57,9 +58,5 @@ module.exports = ($scope, $timeout, $modal) ->
         key: '未決定'
         y: 100 - totalWeights
         color: '#f6f6f6'
+    $timeout -> $scope.$apply()
 
-    $timeout ->
-      console.log $scope.voteRates
-      $scope.$apply()
-
-  $scope.calcVoteRates()

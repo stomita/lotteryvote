@@ -2,7 +2,8 @@
      ng-repeat="element in elements"
      ng-show="targetType && element.type == targetType">
   <photo-icon photo="element.iconUrl"></photo-icon>
-  <slider value="element.weight"
+  <slider title="element.name"
+          value="element.weight"
           color="element.color"
           showValueInBar="element.weight > 10"
           change="changeWeight(element, value)"

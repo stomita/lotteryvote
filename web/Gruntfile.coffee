@@ -108,6 +108,6 @@ module.exports = (grunt) ->
                 compression: 'DEFLATE'
 
 
-    grunt.registerTask "build", ["clean", "coffee", "less", "ngtemplates", "browserify", "copy", "zip:app", "zip:common", "zip:force" ]
+    grunt.registerTask "build", ["clean", "coffee", "less", "ngtemplates", "browserify", "copy", "zip:app", "zip:force" ]
     grunt.registerTask "server", ["build", "watch"]
     grunt.registerTask "default", ["server"]

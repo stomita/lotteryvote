@@ -7,12 +7,13 @@ module.exports = ($document) ->
   restrict: 'E'
   template: """
     <div class="slider">
-      <div class="bar">
-        <span class="weight">{{ value }} %</span>
-      </div>
+      <div class="bar"></div>
+      <div class="title">{{ title }}</div>
+      <div class="weight">{{ value }} %</div>
     </div>
   """
   scope:
+    title: '='
     value: '='
     color: '='
     onChange: '&change'

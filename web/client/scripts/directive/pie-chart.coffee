@@ -15,7 +15,7 @@ module.exports = ($timeout) ->
         color="colorFunction"
         showLabels="true"
         donut="true"
-        donutRatio=".30"
+        donutRatio=".50"
       >
         <svg style="margin-left: -50px; margin-top: -50px;"></svg>
       </nvd3-pie-chart>

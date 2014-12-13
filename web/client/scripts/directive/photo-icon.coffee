@@ -10,4 +10,6 @@ module.exports = ($document) ->
   link: ($scope, $element, $attrs) ->
     $element = $($element)
     $scope.$watch "photo", (photoUrl) ->
-      $element.css "background-image", "url(#{photoUrl})"
+      $element.find(".photo").css
+        "background-image": "url(#{photoUrl})"
+        "background-size": "100% auto"
