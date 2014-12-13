@@ -7,11 +7,17 @@
               target="candidate"
               complete="calcVoteRates()"
   ></slider-set>
-  <h3>委任投票</h3>
-  <slider-set class="proxy-set"
-              source="elements"
-              target="proxy"
-              complete="calcVoteRates()"
-  ></slider-set>
-  <button class="btn btn-primary btn-block" ng-click="addProxy()">委任するひとを増やす</button>
+
+  <div ng-show="!hasProxies()">
+    <button class="btn btn-primary btn-block btn-lg" ng-click="addProxy()">他の人に委任する</button>
+  </div>
+  <div ng-show="hasProxies()">
+    <h3>投票を委任する人</h3>
+    <slider-set class="proxy-set"
+                source="elements"
+                target="proxy"
+                complete="calcVoteRates()"
+    ></slider-set>
+    <button class="btn btn-primary btn-block btn-lg" ng-click="addProxy()">委任する人を追加</button>
+  </div>
 </div>

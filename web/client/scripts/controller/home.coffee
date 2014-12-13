@@ -2,6 +2,8 @@
 
 theme = require "../common/theme"
 
+_ = require "lodash"
+
 module.exports = ($scope, $timeout, $modal) ->
 
   colors = theme["default"].colors
@@ -16,6 +18,8 @@ module.exports = ($scope, $timeout, $modal) ->
     { id: 5, name: 'bbb', weight: 0, type: 'proxy', color: '#bbbbbb', iconUrl: "/images/bbb.png" }
   ]
 
+  $scope.hasProxies = ->
+    _.find $scope.elements, (el) -> el.type == 'proxy'
 
   $scope.addProxy = ->
     modal = $modal.open
