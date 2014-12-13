@@ -96,14 +96,9 @@ module.exports = (grunt) ->
                 files: ".tmp/scripts/main-bundle.js": [".tmp/scripts/main.js"]
 
         zip:
-            common:
-                cwd: "./public"
-                src: [ "./public/common/**/*" ]
-                dest: "../force/src/staticresources/KalsCommon.resource"
-                compression: 'DEFLATE'
             app:
                 cwd: "./public"
-                src: [ "./public/scripts/**/*", "./public/assets/**/*" ]
+                src: [ "./public/scripts/**/*", "./public/styles/**/*", "./public/assets/**/*" ]
                 dest: "../force/src/staticresources/LotteryVote.resource"
                 compression: 'DEFLATE'
             force:
