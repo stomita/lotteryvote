@@ -36,7 +36,7 @@ module.exports = ($scope, $routeParams, $q, $timeout, $modal, LotteryVote) ->
       else
         for candidate, i in $scope.election.candidates
           {
-            id: "id-#{i+1}"
+            id: "id-#{Math.random()}"
             whoId: candidate.id
             name: candidate.name
             weight: 0
@@ -53,13 +53,33 @@ module.exports = ($scope, $routeParams, $q, $timeout, $modal, LotteryVote) ->
   $scope.hasProxies = ->
     _.find $scope.votes, (el) -> el.type == 'proxy'
 
+
   $scope.addProxy = ->
     modal = $modal.open
       templateUrl: 'templates/proxy-picker.html'
       controller: 'ProxyPickerControl'
+      resolve:
+        votes: -> $scope.votes
+    modal.result.then (ret) ->
+      proxy = ret.proxy
+      if ret.action == 'add'
+        $scope.votes.push
+          id: "id-#{Math.random()}"
+          whoId: proxy.id
+          name: proxy.name
+          weight: 0
+          type: 'proxy'
+          color: "#bbbbbb"
+          iconUrl: proxy.iconUrl
+      else
+        $scope.votes = $scope.votes.filter (vt) -> vt.whoId != proxy.id
+      $scope.completeVoteChange()
+    .catch (err) ->
+      console.error err
+
 
   $scope.startLottery = ->
-    modal = $modal.open
+    $modal.open
       templateUrl: 'templates/lottery.html'
       controller: 'LotteryControl'
       resolve:
@@ -70,7 +90,7 @@ module.exports = ($scope, $routeParams, $q, $timeout, $modal, LotteryVote) ->
     calcVoteRates()
     votes =
       for vote in $scope.votes
-        id: if vote.id.indexOf('id-') == 0 then null else vote.id
+        id: if String(vote.id).indexOf('id-') == 0 then null else vote.id
         weight: vote.weight
         candidate:
           if vote.type == 'candidate'

@@ -1,18 +1,33 @@
 <div>
 <div class="modal-header">
-  <h3 class="modal-title">I'm a modal!</h3>
+  <h3 class="modal-title">委任する人を選択</h3>
 </div>
 <div class="modal-body">
-  <ul>
-    <li ng-repeat="item in items">
-     <a ng-click="selected.item = item">{{ item }}</a>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="proxy in proxies">
+      <div class="pull-left">
+        <photo-icon photo="proxy.iconUrl"></photo-icon>
+      </div>
+      <div class="pull-right">
+        <button class="btn btn-default btn-lg"
+                ng-show="!isInSelection(proxy)" ng-click="$close({ action: 'add', proxy: proxy })">
+          <i class="fa fa-plus"></i>
+        </button>
+        <button class="btn btn-primary btn-lg"
+                ng-show="isInSelection(proxy)" ng-click="$close({ action: 'remove', proxy: proxy })">
+          <i class="fa fa-check"></i>
+        </button>
+      </div>
+      <div class="body">
+        <h4 class="media-heading">{{ proxy.name }}</h4>
+        <p class="name">{{ proxy.description }}</p>
+      </div>
+      <div style="clear:both"></div>
     </li>
   </ul>
-  Selected: <b>{{ selected.item }}</b>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary" ng-click="ok()">OK</button>
-  <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  <button class="btn btn-warning" ng-click="$dismiss('cancel')">Cancel</button>
 </div>
 </div>
     

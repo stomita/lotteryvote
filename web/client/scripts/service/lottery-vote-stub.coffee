@@ -14,6 +14,11 @@ module.exports = ($q, $timeout) ->
       $timeout ->
         resolve(require "./data/elections")
 
+  getProxies: ->
+    $q (resolve) ->
+      $timeout ->
+        resolve(require "./data/proxies")
+
   getMyVotes: (electionId) ->
     $q (resolve) ->
       $timeout ->
