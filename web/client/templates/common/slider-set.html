@@ -1,7 +1,7 @@
 <div class="slider-row"
      ng-repeat="element in elements"
      ng-show="targetType && element.type == targetType">
-  <photo-icon photo="element.iconUrl"></photo-icon>
+  <photo-icon photo="element.iconUrl" click="handleIconClick(element)"></photo-icon>
   <slider title="element.name"
           value="element.weight"
           color="element.color"

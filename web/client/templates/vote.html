@@ -20,6 +20,7 @@
               source="votes"
               target="candidate"
               complete="completeVoteChange()"
+              icon-click="navigateToCandidate(element)"
   ></slider-set>
 
   <div ng-show="!hasProxies()">
@@ -33,6 +34,7 @@
                 source="votes"
                 target="proxy"
                 complete="completeVoteChange()"
+                icon-click="navigateToProxyUser(element)"
     ></slider-set>
     <button class="btn btn-primary btn-block btn-lg" ng-click="addProxy()">委任する人を追加</button>
   </div>

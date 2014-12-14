@@ -8,6 +8,7 @@ module.exports = ->
   scope:
     elements: '=source'
     targetType: '@target'
+    onIconClick: '&iconClick'
     onComplete: '&complete'
   controller: [ "$scope", ($scope) ->
     $scope.changeWeight = (elem, weight) ->
@@ -29,6 +30,8 @@ module.exports = ->
           delements[index]?.weight -= dw
       elem.weight = weight
       $scope.$apply()
+    $scope.handleIconClick = (elem) ->
+      $scope.onIconClick?(element: elem)
     $scope.handleComplete = ->
       console.log $scope
       $scope.onComplete?()

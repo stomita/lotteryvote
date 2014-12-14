@@ -49,6 +49,11 @@ module.exports = ($scope, $routeParams, $q, $timeout, $modal, LotteryVote) ->
   .catch (err) ->
     console.error err
 
+  $scope.navigateToCandidate = (el) ->
+    sforce?.one?.navigateToSObject(el.whoId, 'CHATTER')
+
+  $scope.navigateToProxyUser = (el) ->
+    sforce?.one?.navigateToSObject(el.whoId, 'CHATTER')
 
   $scope.hasProxies = ->
     _.find $scope.votes, (el) -> el.type == 'proxy'
