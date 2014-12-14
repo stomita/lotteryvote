@@ -2,7 +2,7 @@
 
 _ = require "lodash"
 
-module.exports = ($window, $q) ->
+module.exports = ($window, $q, $timeout) ->
   service = {}
   for methodName, methodFn of $window.LVRemoteController
     if typeof methodFn == 'function'
@@ -11,7 +11,10 @@ module.exports = ($window, $q) ->
           args = Array.prototype.slice.apply(arguments)
           $q (resolve, reject) ->
             args.push (result, event) ->
-              if event.status then resolve(result) else reject(new Error(event.message))
+              if event.status
+                $timeout -> resolve(result)
+              else
+                $timeout -> reject(new Error(event.message))
             methodFn.apply($window.LVRemoteController, args)
   service
 
