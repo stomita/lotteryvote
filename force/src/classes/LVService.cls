@@ -121,10 +121,42 @@ public class LVService {
   }
 
   public Vote[] getMyVotes(String electionId) {
-    return new Vote[] {};
+    Vote[] votes = new Vote[]{};
+    for (DividedVote__c vt : [
+      SELECT Id, Weight__c,
+        Candidate__r.Id, Candidate__r.Name, Candidate__r.Description__c, Candidate__r.IconUrl__c,
+        Proxy__r.Id, Proxy__r.Name, Proxy__r.AboutMe, Proxy__r.SmallPhotoUrl
+      FROM DividedVote__c
+      WHERE Vote__r.Voter__c = :uid
+    ]) {
+      votes.add(convertVote(vt));
+    }
+    return votes;
   }
 
   public Boolean saveMyVotes(String electionId, Vote[] votes) {
+    DividedVote__c[] dvs = [SELECT Id FROM DividedVote__c WHERE Vote__r.Voter__c = :uid];
+    if (dvs.size() > 0) {
+      delete dvs;
+    }
+    Vote__c v = null;
+    try {
+      v = [SELECT Id FROM Vote__c WHERE Voter__c = :uid];
+    } catch (QueryException qe) {
+      v = new Vote__c(Voter__c=uid);
+      insert v;
+    }
+    dvs = new DividedVote__c[]{};
+    for (Vote vt: votes) {
+      DividedVote__c dv = new DividedVote__c(Vote__c=v.Id, Weight__c=vt.weight);
+      if (vt.candidate != null) {
+        dv.Candidate__c = vt.candidate.id;
+      } else if (vt.proxy != null) {
+        dv.Proxy__c = vt.proxy.id;
+      }
+      dvs.add(dv);
+    }
+    insert dvs;
     return true;
   }
 
