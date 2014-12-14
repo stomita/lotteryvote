@@ -5,7 +5,7 @@ $ = require "jquery"
 module.exports = ($timeout) ->
   restrict: 'E'
   template: """
-    <div ng-style="{ width: width+'px', height: height+'px', overflow: 'hidden' }">
+    <div ng-style="{ margin: '0 auto', width: width+'px', height: height+'px', overflow: 'hidden' }">
       <nvd3-pie-chart
         data="data"
         width="{{ nWidth + 100 }}"
@@ -23,8 +23,7 @@ module.exports = ($timeout) ->
   """
   scope:
     data: '=data'
-    width: '@'
-    height: '@'
+    size: '@'
   controller: [ "$scope", ($scope) ->
     $scope.xFunction = (d) ->
       d.key || '(none)'
@@ -35,5 +34,6 @@ module.exports = ($timeout) ->
   ]
   link: ($scope, $element, $attrs) ->
     $element = $($element)
-    $scope.nWidth = if $scope.width? then +$scope.width else $element.parent().width()
-    $scope.nHeight = +$scope.height
+    $scope.width = $scope.height = $scope.size
+    $scope.nWidth = +$scope.size
+    $scope.nHeight = +$scope.size
