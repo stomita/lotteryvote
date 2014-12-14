@@ -11,10 +11,13 @@
         <name>ApexPage</name>
     </types>
     <types>
+        <members>Candidate__c.Description__c</members>
+        <members>Candidate__c.iconUrl__c</members>
         <members>DividedVote__c.Candidate__c</members>
         <members>DividedVote__c.Proxy__c</members>
         <members>DividedVote__c.Vote__c</members>
         <members>DividedVote__c.Weight__c</members>
+        <members>Election__c.Description__c</members>
         <members>Vote__c.KeyCalc__c</members>
         <members>Vote__c.SumOfWeights__c</members>
         <members>Vote__c.UniqueKey__c</members>
