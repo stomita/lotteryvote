@@ -5,6 +5,7 @@
            applyHtmlTag="false"
            standardStylesheets="false"
            cache="true"
+           controller="LVRemoteController"
 >
 <html lang="ja" ng-app="app" ng-controller="MainControl">
 <head>

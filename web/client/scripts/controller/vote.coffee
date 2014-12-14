@@ -3,18 +3,20 @@
 _ = require "lodash"
 theme = require "../common/theme"
 
-module.exports = ($scope, $timeout, $modal, LotteryVote) ->
+module.exports = ($scope, $routeParams, $timeout, $modal, LotteryVote) ->
+
+  electionId = $routeParams.id
 
   colors = theme["default"].colors
 
   $scope.votes = []
   $scope.voteRates = []
 
-  LotteryVote.getElection().then (election) ->
+  LotteryVote.getElection(electionId).then (election) ->
     $scope.election = election
     $scope.$apply()
 
-  LotteryVote.getMyVotes().then (votes) ->
+  LotteryVote.getMyVotes(electionId).then (votes) ->
     $scope.votes =
       for vote, i in votes
         who = vote.candidate || vote.proxy
@@ -50,7 +52,11 @@ module.exports = ($scope, $timeout, $modal, LotteryVote) ->
         election: -> $scope.election
         votes: -> $scope.votes
 
-  $scope.calcVoteRates = ->
+  $scope.completeVoteChange = ->
+    LotteryVote.saveMyVotes(electionId, $scope.votes)
+    calcVoteRates()
+
+  calcVoteRates = ->
     $scope.voteRates = []
     totalWeights = 0
     proxyWeights = 0

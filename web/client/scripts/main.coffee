@@ -15,10 +15,12 @@ module.exports = angular.module "app", [
       .when "/", 
         controller: 'HomeControl'
         templateUrl: 'templates/home.html'
+      .when "/election/:id", 
+        controller: 'VoteControl'
+        templateUrl: 'templates/vote.html'
       .otherwise 
         redirectTo: '/'
 ]
 
 .controller "MainControl", ($scope) ->
   $scope.title = "LotteryVote"
-  $scope.handleSliderChange = (v) -> console.log v

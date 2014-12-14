@@ -55,21 +55,9 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
-        <fullName>Election__c</fullName>
-        <deleteConstraint>Restrict</deleteConstraint>
-        <externalId>false</externalId>
-        <label>選挙</label>
-        <referenceTo>Election__c</referenceTo>
-        <relationshipLabel>投票</relationshipLabel>
-        <relationshipName>PropagateProxyVotes</relationshipName>
-        <required>true</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>KeyCalc__c</fullName>
         <externalId>false</externalId>
-        <formula>Election__c &amp; &quot;:&quot; &amp;  Voter__c</formula>
+        <formula>Voter__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>キー（数式）</label>
         <required>false</required>

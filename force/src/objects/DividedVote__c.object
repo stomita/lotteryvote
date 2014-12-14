@@ -109,14 +109,6 @@
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
-        <fullName>CandidateInElectionCheck</fullName>
-        <active>true</active>
-        <errorConditionFormula>NOT( ISBLANK( Candidate__c ) ) &amp;&amp;
-Candidate__r.Election__c &lt;&gt;  Vote__r.Election__c</errorConditionFormula>
-        <errorDisplayField>Candidate__c</errorDisplayField>
-        <errorMessage>指定された候補者はこの選挙に立候補していません。</errorMessage>
-    </validationRules>
-    <validationRules>
         <fullName>ProxyOrCandidateCheck</fullName>
         <active>true</active>
         <errorConditionFormula>( ISBLANK( Proxy__c ) &amp;&amp; ISBLANK( Candidate__c ) ) 

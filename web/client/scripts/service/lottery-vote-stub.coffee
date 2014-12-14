@@ -25,4 +25,8 @@ module.exports = () ->
       require "./data/votes"
     )
 
+  saveMyVotes: (electionId, votes) ->
+    Promise.resolve
+      success: true
+
 
