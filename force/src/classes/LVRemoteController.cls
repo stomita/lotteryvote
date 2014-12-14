@@ -34,4 +34,12 @@ public class LVRemoteController {
     return service.saveMyVotes(electionId, votes);
   }
 
+  /**
+   *
+   */
+  @RemoteAction
+  public static LVService.Proxy[] getProxies() {
+    return service.getProxies();
+  }
+
 }

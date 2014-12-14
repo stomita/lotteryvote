@@ -7,6 +7,7 @@ public class LVService {
     }
     String id { get; set; }
     String name { get; set; }
+    String description { get; set; }
     Candidate[] candidates;
   }
 
@@ -44,6 +45,7 @@ public class LVService {
 
   Election convertElection(Election__c el) {
     Election e = new Election(el.Id, el.Name);
+    e.description = el.Description__c;
     return e;
   }
 
@@ -58,11 +60,15 @@ public class LVService {
 
   Candidate convertCandidate(Candidate__c cn) {
     Candidate c = new Candidate(cn.Id, cn.Name);
+    c.description = cn.Description__c;
+    c.iconUrl = cn.IconUrl__c;
     return c;
   }
 
   Proxy convertProxy(User px) {
     Proxy p = new Proxy(px.Id, px.Name);
+    p.description = px.AboutMe;
+    p.iconUrl = px.SmallPhotoUrl;
     return p;
   }
 
@@ -103,12 +109,13 @@ public class LVService {
 
   public Election getElection(String electionId) {
     Election__c el = [
-      SELECT Id, Name
+      SELECT Id, Name, Description__c 
       FROM Election__c
       LIMIT 1
     ];
     Candidate__c[] cts = [
-      SELECT Id, Name FROM Candidate__c
+      SELECT Id, Name, Description__c, IconUrl__c
+      FROM Candidate__c
     ];
     return convertElection(el, cts);
   }
@@ -119,5 +126,17 @@ public class LVService {
 
   public Boolean saveMyVotes(String electionId, Vote[] votes) {
     return true;
+  }
+
+  public Proxy[] getProxies() {
+    Proxy[] proxies = new Proxy[]{};
+    for (User px : [
+      SELECT Id, Name, AboutMe, SmallPhotoUrl
+      FROM User
+      WHERE Profile.Name LIKE 'LotteryVote%'
+    ]) {
+      proxies.add(convertProxy(px));
+    }
+    return proxies;
   }
 }
