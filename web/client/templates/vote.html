@@ -13,12 +13,12 @@
   <slider-set class="candidate-set"
               source="votes"
               target="candidate"
-              complete="calcVoteRates()"
+              complete="completeVoteChange()"
   ></slider-set>
 
   <div ng-show="!hasProxies()">
     <h4>投票を委任したい人</h4>
-    <div>候補者の他に、友達・知り合い・有名知識人など、投票権を委任してもいい人を選ぶことができます。</div>
+    <div>候補者の他に、コミュニティに参加している友達・知り合い・有名知識人など、投票権を委任してもいい人を選ぶことができます。</div>
     <button class="btn btn-primary btn-block btn-lg" ng-click="addProxy()">他の人に委任する</button>
   </div>
   <div ng-show="hasProxies()">
@@ -26,7 +26,7 @@
     <slider-set class="proxy-set"
                 source="votes"
                 target="proxy"
-                complete="calcVoteRates()"
+                complete="completeVoteChange()"
     ></slider-set>
     <button class="btn btn-primary btn-block btn-lg" ng-click="addProxy()">委任する人を追加</button>
   </div>

@@ -29,7 +29,7 @@ module.exports = ($scope, $routeParams, $timeout, $modal, LotteryVote) ->
           iconUrl: who.iconUrl
         }
     $scope.$apply()
-    $scope.calcVoteRates()
+    calcVoteRates()
   .catch (err) ->
     console.error err
 

@@ -13,8 +13,7 @@ module.exports = angular.module "app", [
   ($routeProvider) ->
     $routeProvider
       .when "/", 
-        controller: 'HomeControl'
-        templateUrl: 'templates/home.html'
+        redirectTo: '/election/test'
       .when "/election/:id", 
         controller: 'VoteControl'
         templateUrl: 'templates/vote.html'

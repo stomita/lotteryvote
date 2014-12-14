@@ -1,32 +1,27 @@
 "use strict"
 
 _ = require "lodash"
-Promise = require "promise"
 
-module.exports = () ->
+module.exports = ($q, $timeout) ->
 
   getElection: (electionId) ->
-    Promise.resolve(
-      require("./data/elections")[0]
-    )
+    $q (resolve) ->
+      $timeout ->
+        resolve(require("./data/elections")[0])
 
   getElections: ->
-    Promise.resolve(
-      require "./data/elections"
-    )
-
-  getCandidates: (electionId) ->
-    Promise.resolve(
-      require "./data/candidates"
-    )
+    $q (resolve) ->
+      $timeout ->
+        resolve(require "./data/elections")
 
   getMyVotes: (electionId) ->
-    Promise.resolve(
-      require "./data/votes"
-    )
+    $q (resolve) ->
+      $timeout ->
+        resolve(require "./data/votes")
 
   saveMyVotes: (electionId, votes) ->
-    Promise.resolve
-      success: true
+    $q (resolve) ->
+      $timeout ->
+        resolve(success: true)
 
 
