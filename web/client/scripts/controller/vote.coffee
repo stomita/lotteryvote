@@ -49,11 +49,9 @@ module.exports = ($scope, $routeParams, $q, $timeout, $modal, LotteryVote) ->
   .catch (err) ->
     console.error err
 
+
   $scope.hasProxies = ->
     _.find $scope.votes, (el) -> el.type == 'proxy'
-
-  $scope.hasValidVotes = ->
-    _.find $scope.votes, (el) -> el.weight > 0
 
   $scope.addProxy = ->
     modal = $modal.open
@@ -88,6 +86,8 @@ module.exports = ($scope, $routeParams, $q, $timeout, $modal, LotteryVote) ->
             null
     LotteryVote.saveMyVotes(electionId, votes)
 
+  $scope.isChartVisible = false
+
   calcVoteRates = ->
     $scope.voteRates = []
     totalWeights = 0
@@ -111,5 +111,6 @@ module.exports = ($scope, $routeParams, $q, $timeout, $modal, LotteryVote) ->
         key: '未決定'
         y: 100 - totalWeights
         color: '#f6f6f6'
+    $scope.isChartVisible = totalWeights > 0
     $timeout -> $scope.$apply()
 
