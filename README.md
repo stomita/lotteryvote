@@ -12,6 +12,7 @@ http://jphack2014.challengepost.com/submissions/30740-lotteryvote
 https://lotteryvote-developer-edition.ap0.force.com/one/one.app
 
 username: isuzuki@member.sfhack2014.stomita.org
+
 password: sfhack2014
 
 ### ビルド方法
