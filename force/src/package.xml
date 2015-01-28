@@ -32,6 +32,7 @@
         <name>CustomObject</name>
     </types>
     <types>
+        <members>Election__c</members>
         <members>LotteryVote</members>
         <name>CustomTab</name>
     </types>

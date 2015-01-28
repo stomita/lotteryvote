@@ -73,6 +73,7 @@
         <type>Url</type>
     </fields>
     <label>候補者</label>
+    <pluralLabel>候補者</pluralLabel>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>

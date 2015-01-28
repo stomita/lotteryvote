@@ -101,6 +101,7 @@
         <type>Percent</type>
     </fields>
     <label>分割投票</label>
+    <pluralLabel>分割投票</pluralLabel>
     <nameField>
         <displayFormat>{0000000000}</displayFormat>
         <label>#</label>

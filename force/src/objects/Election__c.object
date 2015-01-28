@@ -63,6 +63,7 @@
         <type>TextArea</type>
     </fields>
     <label>選挙</label>
+    <pluralLabel>選挙</pluralLabel>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
