@@ -83,12 +83,10 @@
         <apexPage>LVHome</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-    <!--
     <tabVisibilities>
         <tab>Election__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-    -->
     <tabVisibilities>
         <tab>LotteryVote</tab>
         <visibility>DefaultOn</visibility>
